@@ -2,15 +2,17 @@ package lab.models;
 import lab.interfaces.IFunc;
 import lab.interfaces.ISysFunc;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FirstSysFunc implements ISysFunc {
     @Override
     public ArrayList<IFunc> getDraw() {
-        ArrayList<IFunc> ar = new ArrayList<>();
-        ar.add(x -> (1-2*x)/3);
-        ar.add(x -> (x>=-Math.pow(3, 0.5) && x<=Math.pow(3, 0.5)) ? -Math.abs(Math.pow(3-Math.pow(x,2), 0.5)) : null);
-        ar.add(x -> (x>=-Math.pow(3, 0.5) && x<=Math.pow(3, 0.5)) ? Math.abs(Math.pow(3-Math.pow(x,2), 0.5)) : null);
-        return ar;
+//        Map<IFunc, IFunc> ar = new HashMap<>();
+//        ar.put(x -> (1-2*x)/3, x -> -2.0/3.0);
+//        ar.add(x -> (x>=-Math.pow(3, 0.5) && x<=Math.pow(3, 0.5)) ? -Math.abs(Math.pow(3-Math.pow(x,2), 0.5)) : null);
+//        ar.add(x -> (x>=-Math.pow(3, 0.5) && x<=Math.pow(3, 0.5)) ? Math.abs(Math.pow(3-Math.pow(x,2), 0.5)) : null);
+        return new ArrayList<>();
     }
     @Override
     public String getMessage() {

@@ -25,7 +25,7 @@ public class IndividualFunc implements IFunc, ICommand {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Пример уравнения: x^2-cos(x)-x\nВведите уравнение:");
             this.xyz = scanner.nextLine();
-            MathModule.execute(this);
+//            MathModule.execute(this);
         }catch (Exception e){
             e.printStackTrace();
             System.out.println("Произошла проблема.");

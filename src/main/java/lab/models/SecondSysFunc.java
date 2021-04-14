@@ -9,9 +9,9 @@ public class SecondSysFunc implements ISysFunc {
     @Override
     public ArrayList<IFunc> getDraw() {
         ArrayList<IFunc> ar = new ArrayList<>();
-        ar.add(this::g_y);
-        ar.add(x -> (x>=-Math.pow(3, 0.5) && x<=Math.pow(3, 0.5)) ? -Math.abs(Math.pow(3-Math.pow(x,2), 0.5)) : null);
-        ar.add(x -> (x>=-Math.pow(3, 0.5) && x<=Math.pow(3, 0.5)) ? Math.abs(Math.pow(3-Math.pow(x,2), 0.5)) : null);
+//        ar.add(this::g_y);
+//        ar.add(x -> (x>=-Math.pow(3, 0.5) && x<=Math.pow(3, 0.5)) ? -Math.abs(Math.pow(3-Math.pow(x,2), 0.5)) : null);
+//        ar.add(x -> (x>=-Math.pow(3, 0.5) && x<=Math.pow(3, 0.5)) ? Math.abs(Math.pow(3-Math.pow(x,2), 0.5)) : null);
         return ar;
     }
     @Override
