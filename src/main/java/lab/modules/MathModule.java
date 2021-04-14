@@ -87,7 +87,7 @@ public class MathModule {
             break;
         }
         ArrayList<Point> points = new ArrayList<>();
-        ResultSetForSys result = MathModule.iterMetod(func, x, y, eps);
+        ResultSetForSys result = MathModule.iterMethod(func, x, y, eps);
         points.add(result.getPoint());
         result.print();
         new GraphModule(func.getDraw(), points, -10, 10);
@@ -106,21 +106,17 @@ public class MathModule {
     }
 
     //Выбирается начальное приближение к отрезку [left, right], такое, что f(left)×f(right)<0
-    public static double doubMetod(IFunc function, double left, double right, double eps) {
-        double dx = 0, xi = 0;
-        if (function.solve(left) == 0) {
-            return left;
+    public static double iterMethod(IFunc function, double eps) {
+        double x;
+        for(double iter = 1; eps < Math.abs(function.solve(x)); iter = iter + 1)
+        {
+//            cout<<"Iteration : "<<setprecision(0)<<iter<<endl;
+//            cout<<"x    = "<<x   <<endl;
+//            cout<<"g(x) = "<<g(x)<<endl;
+//            cout<<"f(x) = "<<f(x)<<endl;
+            x = function.solve(x);
         }
-        if (function.solve(right) == 0) {
-            return right;
-        }
-        while (right - left > eps) {
-            dx = (right - left) / 2.0;
-            xi = left + dx;
-            if (sign(function.solve(left)) == sign(function.solve(xi))) left = xi;
-            else right = xi;
-        }
-        return xi;
+        return x;
     }
 
     private static int sign(double x) {
@@ -138,7 +134,7 @@ public class MathModule {
         return right;
     }
 
-    public static ResultSetForSys iterMetod(ISysFunc func, double x, double y, double eps) {
+    public static ResultSetForSys iterMethod(ISysFunc func, double x, double y, double eps) {
         ResultSetForSys result = new ResultSetForSys();
         double x0 = x, y0 = y, d1, d2;
         int i = 1;
