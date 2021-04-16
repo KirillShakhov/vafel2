@@ -12,9 +12,9 @@ public class MathModule {
         Scanner scanner = new Scanner(System.in);
         double left = -5, right = 5, eps = 0.001;
         while (true) {
-//            pr.print("Введите левую границу:");
+            System.out.println("Введите левую границу:");
             left = Double.parseDouble(scanner.nextLine());
-//            pr.print("Введите правую границу:");
+            System.out.println("Введите правую границу:");
             right = Double.parseDouble(scanner.nextLine());
             if (left > right) {
                 double t = left;
@@ -22,12 +22,12 @@ public class MathModule {
                 right = t;
             }
             while (true) {
-//                pr.print("Введите точность:");
+                System.out.println("Введите точность:");
                 eps = Double.parseDouble(scanner.nextLine());
                 if (eps > 0 && eps < 1) {
                     break;
                 } else {
-//                    pr.print("Точность должна быть больше 0 и меньше 1.");
+                    System.out.println("Точность должна быть больше 0 и меньше 1.");
                 }
             }
             break;
@@ -37,23 +37,19 @@ public class MathModule {
         double point1, point2;
         point1 = MathModule.iterMethod(func, eps);
         if (pointChecker(left, right, point1)) {
-//            pr.print("Результат метода простых итераций: " + point1);
+            System.out.println("Результат метода простых итераций: " + point1);
             points.add(new Point(point1, 0));
         } else {
-//            pr.print("Результат метода простых итераций: решение не удовлетворяет заданному интервалу");
+            System.out.println("Результат метода простых итераций: решение не удовлетворяет заданному интервалу");
         }
         point2 = MathModule.chordMethod(func, dfunc, left, right, eps);
         if (pointChecker(left, right, point2)) {
-//            pr.print("Результат метода хорд: " + point2);
+            System.out.println("Результат метода хорд: " + point2);
             points.add(new Point(point2, 0));
         } else {
-//            pr.print("Результат метода хорд: решение не удовлетворяет заданному интервалу");
+            System.out.println("Результат метода хорд: решение не удовлетворяет заданному интервалу");
         }
-//        new GraphModule(func, points, left, right);
-    }
-
-    private static boolean cordChecker(IFunc func, double left, double right) {
-        return true;
+        new GraphModule(func, points, left, right);
     }
 
     public static void execute(ISysFunc func) {
@@ -86,17 +82,15 @@ public class MathModule {
 
 
     //Выбирается начальное приближение к отрезку [left, right], такое, что f(left)×f(right)<0
-    public static double iterMethod(IFunc function, double eps) {
-        double x = 0;
-        for(double iter = 1; eps < Math.abs(function.solve(x)); iter = iter + 1)
-        {
-//            cout<<"Iteration : "<<setprecision(0)<<iter<<endl;
-//            cout<<"x    = "<<x   <<endl;
-//            cout<<"g(x) = "<<g(x)<<endl;
-//            cout<<"f(x) = "<<f(x)<<endl;
-            x = function.solve(x);
-        }
-        System.out.println("iterMethod x result: "+x);
+    public static double iterMethod(IFunc func , double eps) {
+        int n=0;
+        double x=1,y,b;
+        do {
+            y=func.solve(x);
+            b=Math.abs(x-y);
+            x=y;
+            n++;
+        }while (b>=eps && n<100);
         return x;
     }
 
