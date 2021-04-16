@@ -5,7 +5,6 @@ import lab.models.FirstSysFunc;
 import lab.interfaces.ICommand;
 import lab.models.SecondSysFunc;
 import lab.modules.MathModule;
-import lab.modules.MenuModule;
 
 import java.util.ArrayList;
 
@@ -37,8 +36,5 @@ public class SystemNonlinearEquations implements ICommand {
                 }
             });
         }
-        commands.add(new Main());
-        MenuModule menu = new MenuModule(commands);
-        menu.execute();
     }
 }

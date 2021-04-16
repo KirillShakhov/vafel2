@@ -1,11 +1,9 @@
 package lab.сommands;
 
 import lab.interfaces.ICommand;
-import lab.interfaces.IFunc;
 import lab.models.Func;
 import lab.models.IndividualFunc;
 import lab.modules.MathModule;
-import lab.modules.MenuModule;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,9 +37,5 @@ public class NonlinearEquationsMenu implements ICommand {
                 }
             });
         }
-        commands.add(new IndividualFunc());
-        commands.add(new Main());
-        MenuModule menu = new MenuModule(commands);
-        menu.execute();
     }
 }

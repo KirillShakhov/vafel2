@@ -9,13 +9,12 @@ import java.util.Scanner;
 public class MathModule {
     public static void execute(IFunc func, IFunc dfunc) {
         //Для нелинейных уравнений
-        PrinterModule pr = new PrinterModule();
         Scanner scanner = new Scanner(System.in);
         double left = -5, right = 5, eps = 0.001;
         while (true) {
-            pr.print("Введите левую границу:");
+//            pr.print("Введите левую границу:");
             left = Double.parseDouble(scanner.nextLine());
-            pr.print("Введите правую границу:");
+//            pr.print("Введите правую границу:");
             right = Double.parseDouble(scanner.nextLine());
             if (left > right) {
                 double t = left;
@@ -23,12 +22,12 @@ public class MathModule {
                 right = t;
             }
             while (true) {
-                pr.print("Введите точность:");
+//                pr.print("Введите точность:");
                 eps = Double.parseDouble(scanner.nextLine());
                 if (eps > 0 && eps < 1) {
                     break;
                 } else {
-                    pr.print("Точность должна быть больше 0 и меньше 1.");
+//                    pr.print("Точность должна быть больше 0 и меньше 1.");
                 }
             }
             break;
@@ -38,19 +37,19 @@ public class MathModule {
         double point1, point2;
         point1 = MathModule.iterMethod(func, eps);
         if (pointChecker(left, right, point1)) {
-            pr.print("Результат метода простых итераций: " + point1);
+//            pr.print("Результат метода простых итераций: " + point1);
             points.add(new Point(point1, 0));
         } else {
-            pr.print("Результат метода простых итераций: решение не удовлетворяет заданному интервалу");
+//            pr.print("Результат метода простых итераций: решение не удовлетворяет заданному интервалу");
         }
         point2 = MathModule.chordMethod(func, dfunc, left, right, eps);
         if (pointChecker(left, right, point2)) {
-            pr.print("Результат метода хорд: " + point2);
+//            pr.print("Результат метода хорд: " + point2);
             points.add(new Point(point2, 0));
         } else {
-            pr.print("Результат метода хорд: решение не удовлетворяет заданному интервалу");
+//            pr.print("Результат метода хорд: решение не удовлетворяет заданному интервалу");
         }
-        new GraphModule(func, points, left, right);
+//        new GraphModule(func, points, left, right);
     }
 
     private static boolean cordChecker(IFunc func, double left, double right) {
@@ -59,21 +58,20 @@ public class MathModule {
 
     public static void execute(ISysFunc func) {
         // для систем нелинейных уравнений
-        PrinterModule pr = new PrinterModule();
         Scanner scanner = new Scanner(System.in);
         double eps, x, y;
         while (true) {
-            pr.print("Введите приближение x:");
+//            pr.print("Введите приближение x:");
             x = Double.parseDouble(scanner.nextLine());
-            pr.print("Введите приближение y:");
+//            pr.print("Введите приближение y:");
             y = Double.parseDouble(scanner.nextLine());
             while (true) {
-                pr.print("Введите точность:");
+//                pr.print("Введите точность:");
                 eps = Double.parseDouble(scanner.nextLine());
                 if (eps > 0 && eps < 1) {
                     break;
                 } else {
-                    pr.print("Точность должна быть больше 0 и меньше 1.");
+//                    pr.print("Точность должна быть больше 0 и меньше 1.");
                 }
             }
             break;
@@ -82,7 +80,7 @@ public class MathModule {
         ResultSetForSys result = MathModule.iterMethod(func, x, y, eps);
         points.add(result.getPoint());
         result.print();
-        new GraphModule(func.getDraw(), points, -10, 10);
+//        new GraphModule(func.getDraw(), points, -10, 10);
     }
 
 
