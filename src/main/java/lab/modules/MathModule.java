@@ -31,10 +31,10 @@ public class MathModule {
         ArrayList<Point> points = new ArrayList<>();
         double point1, point2;
         point1 = MathModule.iterMethod(func, eps);
-        point2 = MathModule.chordMethod(func, dfunc, left, right, eps);
+        point2 = MathModule.tangentMethod(func, dfunc, left, right, eps);
 
         System.out.println("Результат метода простых итераций: " + point1);
-        System.out.println("Результат метода хорд: " + point2);
+        System.out.println("Результат метода касательных: " + point2);
 
         points.add(new Point(point1, 0));
         points.add(new Point(point2, 0));
@@ -70,7 +70,7 @@ public class MathModule {
 
     /*
     метод простых итераций предполагает схему
-    xk = g(xk-1) где g(x) = x + b*f(x) где b - произвльное число
+    xk = g(xk-1) где g(x) = x + b*f(x) где b - произвольное число
     */
     static double g(double x, IFunc f)
     {
@@ -86,27 +86,22 @@ public class MathModule {
         return x;
     }
 
-    public static double chordMethod(IFunc function, IFunc dfunction,  double left, double right, double eps) {
-        int n=0;
+    public static double tangentMethod(IFunc function, IFunc dfunction, double left, double right, double eps) {
         double x;
-        if (function.solve(left)*dfunction.solve(left)<0)
-        {
+        if (function.solve(left)*dfunction.solve(left)<0) {
             x = left;
         }
-        else
-        {
+        else {
             x = right;
         }
-        double counter = 0;
-        counter = Math.abs(dfunction.solve(x));
+        double counter = Math.abs(dfunction.solve(x));
+        int n=0;
         while  (counter > eps)
         {
             x = x - (function.solve(x) / dfunction.solve(x));
             n += 1;
             counter--;
         }
-//        System.out.println("f( " + x  + ") = " + function.solve(x));
-//        System.out.println("f1( " + x + ") = " + function.dsolve(x));
         return x;
     }
 
