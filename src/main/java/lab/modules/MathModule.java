@@ -12,18 +12,14 @@ public class MathModule {
         Scanner scanner = new Scanner(System.in);
         double left = -5, right = 5, eps = 0.001;
         while (true) {
-            System.out.println("Введите левую границу:");
-            left = Double.parseDouble(scanner.nextLine());
-            System.out.println("Введите правую границу:");
-            right = Double.parseDouble(scanner.nextLine());
-            if (left > right) {
-                double t = left;
-                left = right;
-                right = t;
-            }
             while (true) {
                 System.out.println("Введите точность:");
                 eps = Double.parseDouble(scanner.nextLine());
+                System.out.println("Введите левую границу:");
+                left = Double.parseDouble(scanner.nextLine());
+                System.out.println("Введите правую границу:");
+                right = Double.parseDouble(scanner.nextLine());
+
                 if (eps > 0 && eps < 1) {
                     break;
                 } else {
@@ -36,21 +32,15 @@ public class MathModule {
         ArrayList<Point> points = new ArrayList<>();
         double point1, point2;
         point1 = MathModule.iterMethod(func, eps);
-        if (pointChecker(left, right, point1)) {
-            System.out.println("Результат метода простых итераций: " + point1);
-            points.add(new Point(point1, 0));
-        } else {
-            System.out.println("Результат метода простых итераций: решение не удовлетворяет заданному интервалу");
-            System.out.println(point1);
-        }
         point2 = MathModule.chordMethod(func, dfunc, left, right, eps);
-        if (pointChecker(left, right, point2)) {
-            System.out.println("Результат метода хорд: " + point2);
-            points.add(new Point(point2, 0));
-        } else {
-            System.out.println("Результат метода хорд: решение не удовлетворяет заданному интервалу");
-        }
-        new GraphModule(func, points, left, right);
+
+        System.out.println("Результат метода простых итераций: " + point1);
+        System.out.println("Результат метода хорд: " + point2);
+
+        points.add(new Point(point1, 0));
+        points.add(new Point(point2, 0));
+
+        new GraphModule(func, points);
     }
     public static void execute(ISysFunc func) {
         // для систем нелинейных уравнений

@@ -26,10 +26,8 @@ public class Bootstrap {
                 // Можно добавить нелинейное уравнение
 
                 // 1
-                funcs.add(new Func("x^2+x+2", x -> (Math.pow(x, 2) + x + 2), x -> 2 * x + 1));
-                // 2
                 funcs.add(new Func("3x^2-14x-5", x -> 3 * Math.pow(x, 2) - (14 * x) - 5, x -> 6 * x - 14));
-                // 3
+                // 2
                 funcs.add(new Func("2^x-2*x^2-1", x -> Math.pow(2.0,x) - 2*Math.pow(x, 2.0) - 1, x->Math.pow(2.0, x)*Math.log(2)-4*x));
                 //
 

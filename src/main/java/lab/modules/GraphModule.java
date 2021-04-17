@@ -61,13 +61,23 @@ public class GraphModule extends JPanel {
         frameOp();
     }
 
-    public GraphModule(IFunc func, ArrayList<Point> ar, double left, double right) {
+    public GraphModule(IFunc func, ArrayList<Point> points, double left, double right) {
         this.x1 = left;
         this.x2 = right;
         this.y1 = left;
         this.y2 = right;
         this.f.add(func);
-        points.addAll(ar);
+        this.points.addAll(points);
+        frameOp();
+    }
+
+    public GraphModule(IFunc func, ArrayList<Point> points) {
+        this.x1 = -5;
+        this.x2 = 5;
+        this.y1 = -5;
+        this.y2 = 5;
+        this.f.add(func);
+        this.points.addAll(points);
         frameOp();
     }
 
