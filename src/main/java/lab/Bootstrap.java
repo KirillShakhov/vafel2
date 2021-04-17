@@ -12,8 +12,9 @@ import java.util.Scanner;
 
 public class Bootstrap {
     static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
-        while(true) {
+        while (true) {
 
 
             System.out.println("1. Нелинейное уравнение\n2. Системы нелинейных уравнений.");
@@ -25,15 +26,17 @@ public class Bootstrap {
                 // Можно добавить нелинейное уравнение
 
                 // 1
-                funcs.add(new Func("y=x^2+x+2", x -> (Math.pow(x, 2) + x + 2), x -> 2 * x + 1));
+                funcs.add(new Func("x^2+x+2", x -> (Math.pow(x, 2) + x + 2), x -> 2 * x + 1));
                 // 2
                 funcs.add(new Func("3x^2-14x-5", x -> 3 * Math.pow(x, 2) - (14 * x) - 5, x -> 6 * x - 14));
+                // 3
+                funcs.add(new Func("2^x-2*x^2-1", x -> Math.pow(2.0,x) - 2*Math.pow(x, 2.0) - 1, x->Math.pow(2.0, x)*Math.log(2)-4*x));
                 //
 
 
                 /*
                  Вывод и обработка ввода
-                 */
+                */
                 int i = 1;
                 for (Func f : funcs) {
                     System.out.println((i++) + ". " + f.getName());
@@ -46,21 +49,19 @@ public class Bootstrap {
                 } catch (Exception e) {
                     System.out.println("Нет такого уравнения");
                 }
-            }
-
-
-
-            else if (str.equals("2")) {
+            } else if (str.equals("2")) {
                 ArrayList<ISysFunc> sysFuncs = new ArrayList<>();
 
 
+                // 1
                 sysFuncs.add(new FirstSysFunc());
+                // 2
                 sysFuncs.add(new SecondSysFunc());
 
 
-                 /*
+                /*
                  Вывод и обработка ввода
-                 */
+                */
                 int i = 1;
                 for (ISysFunc f : sysFuncs) {
                     System.out.println((i++) + ". " + f.getMessage());

@@ -79,16 +79,25 @@ public class MathModule {
 
 
 
+    /*
+    метод простых итераций предполагает схему
+    xk = g(xk-1) где g(x) = x + b*f(x) где b - произвльное число
+    */
+    static double g(double x, IFunc f)
+    {
+        return x + 0.1*f.solve(x);
+    }
     public static double iterMethod(IFunc func, double eps) {
-//        double x0 = x, y0 = 0, d1, d2;
-//        int i = 1;
-//        do {
-//            x = func.solve(y0);
-//            d1 = func.solve(x, y);
-//            x0 = x;
-//        } while (Math.abs(d1) > eps);
-//        return result;
-        return 0;
+        double x = 1;
+        for(double iter = 1; eps < Math.abs(func.solve(x)); iter++)
+        {
+//            cout<<"Iteration : "<<setprecision(0)<<iter<<endl;
+//            cout<<"x    = "<<x   <<endl;
+//            cout<<"g(x) = "<<g(x)<<endl;
+//            cout<<"f(x) = "<<f(x)<<endl;
+            x = g(x, func);
+        }
+        return x;
     }
 
     public static double chordMethod(IFunc function, IFunc dfunction,  double left, double right, double eps) {
