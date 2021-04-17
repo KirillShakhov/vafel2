@@ -10,23 +10,22 @@ public class MathModule {
     public static void execute(IFunc func, IFunc dfunc) {
         //Для нелинейных уравнений
         Scanner scanner = new Scanner(System.in);
-        double left = -5, right = 5, eps = 0.001;
+        double left, right, eps;
         while (true) {
-            while (true) {
+            try {
                 System.out.println("Введите точность:");
                 eps = Double.parseDouble(scanner.nextLine());
                 System.out.println("Введите левую границу:");
                 left = Double.parseDouble(scanner.nextLine());
                 System.out.println("Введите правую границу:");
                 right = Double.parseDouble(scanner.nextLine());
-
-                if (eps > 0 && eps < 1) {
-                    break;
-                } else {
+                if (eps <= 0 || eps >= 1) {
                     System.out.println("Точность должна быть больше 0 и меньше 1.");
+                } else {
+                    break;
                 }
             }
-            break;
+            catch (Exception ignored){}
         }
 
         ArrayList<Point> points = new ArrayList<>();
@@ -79,13 +78,10 @@ public class MathModule {
     }
     public static double iterMethod(IFunc func, double eps) {
         double x = 1;
-        for(double iter = 1; eps < Math.abs(func.solve(x)); iter++)
-        {
-//            cout<<"Iteration : "<<setprecision(0)<<iter<<endl;
-//            cout<<"x    = "<<x   <<endl;
-//            cout<<"g(x) = "<<g(x)<<endl;
-//            cout<<"f(x) = "<<f(x)<<endl;
+//        double iter = 1;
+        while (eps < Math.abs(func.solve(x))) {
             x = g(x, func);
+//            iter++;
         }
         return x;
     }
