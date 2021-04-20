@@ -5,6 +5,7 @@ import lab.interfaces.ISysFunc;
 import lab.models.FirstSysFunc;
 import lab.models.Func;
 import lab.models.SecondSysFunc;
+import lab.modules.IndividualFunc;
 import lab.modules.MathModule;
 
 import java.util.ArrayList;
@@ -39,11 +40,23 @@ public class Bootstrap {
                 for (Func f : funcs) {
                     System.out.println((i++) + ". " + f.getName());
                 }
+                System.out.println(i+". Свое уравнение.");
                 str = scanner.nextLine();
                 try {
-                    IFunc func1 = funcs.get(Integer.parseInt(str) - 1).getFunc();
-                    IFunc dfunc1 = funcs.get(Integer.parseInt(str) - 1).getDfunc();
-                    MathModule.execute(func1, dfunc1);
+                    if(Integer.parseInt(str)==i){
+                        System.out.println("Введите уравнение:");
+                        String xyz = scanner.nextLine();
+                        System.out.println("Введите производную:");
+                        String dxyz = scanner.nextLine();
+                        IFunc func1 = new IndividualFunc(xyz);
+                        IFunc dfunc1 = new IndividualFunc(dxyz);
+                        MathModule.execute(func1, dfunc1);
+                    }
+                    else {
+                        IFunc func1 = funcs.get(Integer.parseInt(str) - 1).getFunc();
+                        IFunc dfunc1 = funcs.get(Integer.parseInt(str) - 1).getDfunc();
+                        MathModule.execute(func1, dfunc1);
+                    }
                 } catch (Exception e) {
                     System.out.println("Нет такого уравнения");
                 }
