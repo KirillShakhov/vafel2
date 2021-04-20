@@ -63,7 +63,7 @@ public class MathModule {
         ResultSetForSys result = MathModule.iterMethod(func, x, y, eps);
         points.add(result.getPoint());
         result.print();
-        new GraphModule(func.getDraw(), points, -10, 10);
+        new GraphModule(func.getDraw(), points);
     }
 
 

@@ -33,7 +33,7 @@ public class Bootstrap {
 
 
                 /*
-                 Вывод и обработка ввода
+                 Вывод и обработка ввода/ не трогать
                 */
                 int i = 1;
                 for (Func f : funcs) {
@@ -47,6 +47,9 @@ public class Bootstrap {
                 } catch (Exception e) {
                     System.out.println("Нет такого уравнения");
                 }
+
+
+
             } else if (str.equals("2")) {
                 ArrayList<ISysFunc> sysFuncs = new ArrayList<>();
 

@@ -16,7 +16,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import lab.models.Point;
 
-
+/*
+lib for graph
+ */
 
 public class GraphModule extends JPanel {
     double x1, x2, y1, y2;
@@ -56,6 +58,16 @@ public class GraphModule extends JPanel {
         this.x2 = right;
         this.y1 = left;
         this.y2 = right;
+        this.f.addAll(func);
+        this.points.addAll(points);
+        frameOp();
+    }
+
+    public GraphModule(ArrayList<IFunc> func, ArrayList<Point> points) {
+        this.x1 = -5;
+        this.x2 = 5;
+        this.y1 = -5;
+        this.y2 = 5;
         this.f.addAll(func);
         this.points.addAll(points);
         frameOp();
