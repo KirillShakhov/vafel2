@@ -2,6 +2,7 @@ package lab.modules;
 import lab.interfaces.IFunc;
 import lab.interfaces.ISysFunc;
 import lab.models.Point;
+import lab.models.Result;
 import lab.models.ResultSetForSys;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -29,15 +30,19 @@ public class MathModule {
         }
 
         ArrayList<Point> points = new ArrayList<>();
-        double point1, point2;
-        point1 = MathModule.iterMethod(func, eps);
-        point2 = MathModule.tangentMethod(func, dfunc, left, right, eps);
+        Result result1 = MathModule.iterMethod(func, eps);
+        Result result2 = MathModule.tangentMethod(func, dfunc, left, right, eps);
 
-        System.out.println("Результат метода простых итераций: " + point1);
-        System.out.println("Результат метода касательных: " + point2);
+        System.out.println("Результат метода простых итераций: " + result1.getX());
+        System.out.println("Время выполнения: " + result1.getTime());
+        System.out.println("Количество итераций: " + result1.getIter());
+        System.out.println("Результат метода касательных: " + result2.getX());
+        System.out.println("Время выполнения: " + result2.getTime());
+        System.out.println("Количество итераций: " + result2.getIter());
+        System.out.println("Разница во времени: " + Math.abs(result1.getTime()-result2.getTime()));
 
-        points.add(new Point(point1, 0));
-        points.add(new Point(point2, 0));
+        points.add(new Point(result1.getX(), 0));
+        points.add(new Point(result2.getX(), 0));
 
         new GraphModule(func, points);
     }
@@ -76,17 +81,26 @@ public class MathModule {
     {
         return x + 0.1*f.solve(x);
     }
-    public static double iterMethod(IFunc func, double eps) {
+    public static Result iterMethod(IFunc func, double eps) {
+        Result result = new Result();
+        long start = System.currentTimeMillis();
         double x = 1;
-//        double iter = 1;
+        int iter = 1;
         while (eps < Math.abs(func.solve(x))) {
             x = g(x, func);
-//            iter++;
+            iter++;
         }
-        return x;
+        long finish = System.currentTimeMillis();
+        long timeConsumedMillis = finish - start;
+        result.setX(x);
+        result.setIter(iter);
+        result.setTime(timeConsumedMillis);
+        return result;
     }
 
-    public static double tangentMethod(IFunc function, IFunc dfunction, double left, double right, double eps) {
+    public static Result tangentMethod(IFunc function, IFunc dfunction, double left, double right, double eps) {
+        Result result = new Result();
+        long start = System.currentTimeMillis();
         double x;
         if (function.solve(left)*dfunction.solve(left)<0) {
             x = left;
@@ -102,7 +116,12 @@ public class MathModule {
             n += 1;
             counter--;
         }
-        return x;
+        long finish = System.currentTimeMillis();
+        long timeConsumedMillis = finish - start;
+        result.setX(x);
+        result.setIter(n);
+        result.setTime(timeConsumedMillis);
+        return result;
     }
 
     public static ResultSetForSys iterMethod(ISysFunc func, double x, double y, double eps) {
